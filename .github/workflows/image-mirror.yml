@@ -1,0 +1,124 @@
+# workflow 名称
+name: image-mirror
+
+# 当新建 issues 时，触发
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+
+# 需要执行的任务列表
+jobs:
+  # 镜像转换任务
+  sync_to_dockerhub:
+    # 运行环境
+    runs-on: ubuntu-22.04
+    # 运行条件 => issues 的 label 包含 image-mirror
+    if: contains(github.event.issue.labels.*.name, 'image-mirror')
+    # 镜像转换任务的步骤列表
+    steps:
+      - name: Create comment
+        if: steps.fc.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Syncing image to dockerHub, please wait a moment  
+            [Check the progress](https://github.com/imdingtalk/image-mirror/actions/runs/${{ github.run_id }})
+     
+          reactions: rocket
+
+      - name: Check out code
+        uses: actions/checkout@v2
+      # - uses: hmarr/debug-action@v2
+      #   name: debug
+      - name: prepare
+        run: |
+          wget -q  https://github.com/AliyunContainerService/image-syncer/releases/download/v1.3.1/image-syncer-v1.3.1-linux-amd64.tar.gz
+          tar zxf image-syncer-v1.3.1-linux-amd64.tar.gz 
+          sudo  apt install dos2unix 
+      - name: start sync
+        id: syncImage
+        env:
+          DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DEFAULT_REGISTRY: index.docker.io
+          DEFAULT_NAMESPACE: ${{ secrets.DOCKER_USER }} 
+        #处理body中的空格和tab和换行，并在结尾添加: ， 写入images.yml 文件
+        run: | 
+          echo "${{ github.event.issue.body }}" > images-init.yml 
+          dos2unix              images-init.yml
+          sed -i 's/^[ \t]*//g' images-init.yml
+          sed -i 's/[ \t]*$//g' images-init.yml
+          sed -i '/^[  ]*$/d'   images-init.yml
+          img=$(cat images-init.yml)
+          for i in ${img[@]}
+          do
+            tagName=$(echo $i | awk -F "/" '{print $NF}');
+            echo $i: ${DEFAULT_REGISTRY}/${DEFAULT_NAMESPACE}/${tagName} >> images.yml;
+            echo ${DEFAULT_REGISTRY}/${DEFAULT_NAMESPACE}/${tagName} >> dockerhub-image.yml;
+          done
+          cat images.yml
+          ./image-syncer  --auth=./auth.yml --images=./images.yml 
+      - name: Add Success Issues
+        if: ${{ success() }}
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['succeed']
+            })
+
+      - id: get-comment-body
+        run: |
+          body="$(cat script.md)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}" 
+          echo "::set-output name=body::$body"
+
+          dockerhubImage="$(cat dockerhub-image.yml)"
+          dockerhubImage="${dockerhubImage//'%'/'%25'}"
+          dockerhubImage="${dockerhubImage//$'\n'/'%0A'}"
+          dockerhubImage="${dockerhubImage//$'\r'/'%0D'}" 
+          echo "::set-output name=dockerhubImage::$dockerhubImage"
+
+          sourceImage="$(cat images-init.yml)"
+          sourceImage="${sourceImage//'%'/'%25'}"
+          sourceImage="${sourceImage//$'\n'/'%0A'}"
+          sourceImage="${sourceImage//$'\r'/'%0D'}" 
+          echo "::set-output name=sourceImage::$sourceImage"
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Syncing image to dockerHub
+
+      - name: Add Tips
+        if: ${{ success() }} 
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            [Check the progress](https://github.com/imdingtalk/image-mirror/actions/runs/${{ github.run_id }})              
+            ## 镜像信息如下
+            - dockerhub-image.yml  
+            ```shell
+            ${{ steps.get-comment-body.outputs.dockerhubImage }}
+            ```
+            - images-init.yml
+            ```shell
+            ${{ steps.get-comment-body.outputs.sourceImage }}
+            ```            
+            ${{ steps.get-comment-body.outputs.body }}
+          reactions: hooray
+          edit-mode: replace

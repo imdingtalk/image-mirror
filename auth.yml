@@ -1,0 +1,9 @@
+index.docker.io:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
+registry-1.docker.io:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
+registry.hub.docker.com:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
