@@ -7,3 +7,6 @@ registry-1.docker.io:
 registry.hub.docker.com:
   username: $DOCKER_USER
   password: $DOCKER_PASSWD
+docker.io:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
