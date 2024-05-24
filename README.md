@@ -17,10 +17,11 @@
 ## 使用
 ### 直接使用
 
-使用指定label提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/2)如下：  
-![image](https://user-images.githubusercontent.com/16778873/190463891-9b0c341d-49b4-4dca-93ff-4622e616de88.png)
+提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/2)如下：  
+![image](https://github.com/imdingtalk/image-mirror/assets/16778873/b1778053-c251-4003-ad86-caa8637b6b76)
 
-就会出发GitHub action，同步镜像到 `dockerhub`(默认同步到用户 `imdingtalk` 的docker仓库)  
+
+就会出发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
 
 GitHub action bot会在action完成后，提示同步成功的镜像
 
@@ -29,7 +30,8 @@ GitHub action bot会在action完成后，提示同步成功的镜像
 
 1. fork 本仓库，然后在仓库设置中打开`issue`功能  
 2. 设置自己的dockerhub仓库信息  
-![image](https://user-images.githubusercontent.com/16778873/190463363-fbe663f5-d835-48e0-8b81-d5470458a99c.png)
+![image](https://github.com/imdingtalk/image-mirror/assets/16778873/598e931f-9b59-42d0-bdde-3acccf6ffbff)
+
 3. 按照直接使用的方式在自己的仓库提交issue  
 
 
