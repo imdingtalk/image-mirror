@@ -27,7 +27,7 @@ for i in ${img[@]}
 do
     tagName=$(echo $i | awk -F "/" '{print $NF}');
     docker pull $i;
-    sourceTag=$(cat init-image.yml | grep $tagName);
+    sourceTag=$(cat images-init.yml | grep $tagName);
     docker tag $i $sourceTag;
 done
 ```
