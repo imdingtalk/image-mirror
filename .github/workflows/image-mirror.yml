@@ -44,7 +44,8 @@ jobs:
         env:
           DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DEFAULT_REGISTRY: index.docker.io
+          #DEFAULT_REGISTRY: index.docker.io
+          DEFAULT_REGISTRY: registry.cn-hangzhou.aliyuncs.com
           DEFAULT_NAMESPACE: ${{ secrets.DOCKER_USER }} 
         #处理body中的空格和tab和换行，并在结尾添加: ， 写入images.yml 文件
         run: | 
