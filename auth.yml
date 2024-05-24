@@ -10,3 +10,6 @@ registry.hub.docker.com:
 docker.io:
   username: $DOCKER_USER
   password: $DOCKER_PASSWD
+registry.cn-hangzhou.aliyuncs.com:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
