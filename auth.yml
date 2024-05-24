@@ -13,3 +13,6 @@ docker.io:
 registry.cn-hangzhou.aliyuncs.com:
   username: $DOCKER_USER
   password: $DOCKER_PASSWD
+registry.cn-shenzhen.aliyuncs.com:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
