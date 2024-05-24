@@ -12,7 +12,7 @@ on:
 # 需要执行的任务列表
 jobs:
   # 镜像转换任务
-  sync_to_dockerhub:
+  sync_to_target_registry:
     # 运行环境
     runs-on: ubuntu-22.04
     # 运行条件 => issues 的 label 包含 image-mirror
