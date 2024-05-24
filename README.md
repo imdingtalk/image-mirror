@@ -17,7 +17,7 @@
 ## 使用
 ### 直接使用
 
-提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/2)如下：  
+提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/30)如下：  
 ![image](https://github.com/imdingtalk/image-mirror/assets/16778873/b1778053-c251-4003-ad86-caa8637b6b76)
 
 
