@@ -16,3 +16,6 @@ registry.cn-hangzhou.aliyuncs.com:
 registry.cn-shenzhen.aliyuncs.com:
   username: $DOCKER_USER
   password: $DOCKER_PASSWD
+$DEFAULT_REGISTRY:
+  username: $DOCKER_USER
+  password: $DOCKER_PASSWD
