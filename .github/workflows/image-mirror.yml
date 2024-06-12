@@ -46,8 +46,8 @@ jobs:
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           # TARGET_REGISTRY: index.docker.io
           # TARGET_REGISTRY: registry.cn-hangzhou.aliyuncs.com
-          TARGET_REGISTRY: ${{ vars.TARGET_NAMESPACE }}
-          TARGET_NAMESPACE: ${{ vars.TARGET_REGISTRY }}
+          TARGET_NAMESPACE: ${{ vars.TARGET_NAMESPACE }}
+          TARGET_REGISTRY: ${{ vars.TARGET_REGISTRY }}
         #处理body中的空格和tab和换行，并在结尾添加: ， 写入images.yml 文件
         run: | 
           echo "${{ github.event.issue.body }}" > images-init.yml 
