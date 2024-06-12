@@ -44,10 +44,10 @@ jobs:
         env:
           DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          # DEFAULT_REGISTRY: index.docker.io
-          # DEFAULT_REGISTRY: registry.cn-hangzhou.aliyuncs.com
-          DEFAULT_REGISTRY: registry.cn-shenzhen.aliyuncs.com
-          DEFAULT_NAMESPACE: ${{ secrets.REGISTRY_NAMESPACE }} 
+          # TARGET_REGISTRY: index.docker.io
+          # TARGET_REGISTRY: registry.cn-hangzhou.aliyuncs.com
+          TARGET_REGISTRY: ${{ env.TARGET_REGISTRY }}
+          TARGET_NAMESPACE: ${{ env.TARGET_NAMESPACE }} 
         #处理body中的空格和tab和换行，并在结尾添加: ， 写入images.yml 文件
         run: | 
           echo "${{ github.event.issue.body }}" > images-init.yml 
@@ -59,8 +59,8 @@ jobs:
           for i in ${img[@]}
           do
             tagName=$(echo $i | awk -F "/" '{print $NF}');
-            echo $i: ${DEFAULT_REGISTRY}/${DEFAULT_NAMESPACE}/${tagName} >> images.yml;
-            echo ${DEFAULT_REGISTRY}/${DEFAULT_NAMESPACE}/${tagName} >> dockerhub-image.yml;
+            echo $i: ${TARGET_REGISTRY}/${TARGET_NAMESPACE}/${tagName} >> images.yml;
+            echo ${TARGET_REGISTRY}/${TARGET_NAMESPACE}/${tagName} >> dockerhub-image.yml;
           done
           cat images.yml
           ./image-syncer  --auth=./auth.yml --images=./images.yml 
