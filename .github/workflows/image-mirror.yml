@@ -42,8 +42,8 @@ jobs:
       - name: start sync
         id: syncImage
         env:
-          DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          TARGET_REGISTRY_PASSWORD: ${{ secrets.TARGET_REGISTRY_PASSWORD }}
+          TARGET_REGISTRY_USER: ${{ vars.TARGET_REGISTRY_USER }}
           # TARGET_REGISTRY: index.docker.io
           # TARGET_REGISTRY: registry.cn-hangzhou.aliyuncs.com
           TARGET_NAMESPACE: ${{ vars.TARGET_NAMESPACE }}
