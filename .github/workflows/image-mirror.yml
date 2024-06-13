@@ -16,7 +16,7 @@ jobs:
     # 运行环境
     runs-on: ubuntu-22.04
     # 运行条件 => issues 的 label 包含 image-mirror
-    if: contains(github.event.issue.labels.*.name, 'image-mirror')
+    # if: contains(github.event.issue.labels.*.name, 'image-mirror')
     # 镜像转换任务的步骤列表
     steps:
       - name: Create comment
