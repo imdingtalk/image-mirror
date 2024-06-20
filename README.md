@@ -37,6 +37,7 @@
 提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/30)如下：  
 ![image](https://github.com/imdingtalk/image-mirror/assets/16778873/b1778053-c251-4003-ad86-caa8637b6b76)
 
+![image](https://github.com/imdingtalk/image-mirror/assets/16778873/18609b09-f41a-46e9-a240-d7eddd925b53)
 
 就会出发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
 
