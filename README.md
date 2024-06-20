@@ -30,6 +30,8 @@
 **TARGET_REGISTRY_USER：** 目标仓库的用户名  
 **TARGET_REGISTRY_PASSWORD：** 目标仓库的密码  
 该例子中，需要确保使用目标仓库的用户名和密码，使用命令 `docker login registry.cn-hangzhou.aliyuncs.com`能够成功登录 
+4. 按照直接使用的方式在自己的仓库提交issue  
+
 ### 直接使用
 
 提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/30)如下：  
@@ -43,7 +45,7 @@ GitHub action bot会在action完成后，提示同步成功的镜像
 
  
 
-4. 按照直接使用的方式在自己的仓库提交issue  
+
 
 
 ## Tools
