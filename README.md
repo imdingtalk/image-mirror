@@ -15,18 +15,8 @@
 - ...
 
 ## 使用
-### 直接使用
 
-提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/30)如下：  
-![image](https://github.com/imdingtalk/image-mirror/assets/16778873/b1778053-c251-4003-ad86-caa8637b6b76)
-
-
-就会出发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
-
-GitHub action bot会在action完成后，提示同步成功的镜像
-
-
-### fork 使用
+### fork 使用(推荐)
 
 1. fork 本仓库，然后在仓库设置中打开`issue`功能  
 2. 设置自己的目标仓库信息  
@@ -39,7 +29,19 @@ GitHub action bot会在action完成后，提示同步成功的镜像
 **TARGET_REGISTRY：** 目标仓库，该例子中应该设置为`registry.cn-hangzhou.aliyuncs.com`  
 **TARGET_REGISTRY_USER：** 目标仓库的用户名  
 **TARGET_REGISTRY_PASSWORD：** 目标仓库的密码  
-该例子中，需要确保使用目标仓库的用户名和密码，使用命令 `docker login registry.cn-hangzhou.aliyuncs.com`能够成功登录  
+该例子中，需要确保使用目标仓库的用户名和密码，使用命令 `docker login registry.cn-hangzhou.aliyuncs.com`能够成功登录 
+### 直接使用
+
+提交一个issue即可，issue内容为你无法正常下载的镜像，[示例](https://github.com/imdingtalk/image-mirror/issues/30)如下：  
+![image](https://github.com/imdingtalk/image-mirror/assets/16778873/b1778053-c251-4003-ad86-caa8637b6b76)
+
+
+就会出发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
+
+GitHub action bot会在action完成后，提示同步成功的镜像
+
+
+ 
 
 4. 按照直接使用的方式在自己的仓库提交issue  
 
