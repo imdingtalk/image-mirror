@@ -23,16 +23,6 @@ jobs:
       cancel-in-progress: true
     # 镜像转换任务的步骤列表
     steps:
-      - name: Create comment
-        if: steps.fc.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            Syncing image to TargetRegistry, please wait a moment  
-            [Check the progress](https://github.com/imdingtalk/image-mirror/actions/runs/${{ github.run_id }})
-     
-          reactions: rocket
 
       - name: Check out code
         uses: actions/checkout@v2
@@ -48,12 +38,35 @@ jobs:
         run: |
           python .github/scripts/check_image_format.py "${{ github.event.issue.body }}"
 
+    - name: Add comment if body is not image format
+      if: steps.check_body.outputs.is_image_format == 'false'
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          github.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: `@${{ github.event.issue.user.login }} 请使用标准镜像格式\n镜像要带tag,如nginx,请写为nginx:latest; \n标题不重要,issue描述部分,每行一个镜像不要有其他内容\n 可以直接更新你的issue`
+          })
+
       - name: Add image-mirror label if body is image format
         if: steps.check_body.outputs.is_image_format == 'true'
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'image-mirror'
+
+      - name: Create comment
+        if: ${{ success() && steps.fc.outputs.comment-id == '' }}
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Syncing image to TargetRegistry, please wait a moment  
+            [Check the progress](https://github.com/imdingtalk/image-mirror/actions/runs/${{ github.run_id }})    
+          reactions: rocket
 
       - name: prepare
         if: steps.check_body.outputs.is_image_format == 'true'
