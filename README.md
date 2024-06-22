@@ -25,13 +25,11 @@
 比如我们要同步一个外部镜像到`registry.cn-hangzhou.aliyuncs.com/imdingtalk/kube-apiserver:v1.27.12`
 
 需要设置一些变量 `variables`  
-- **DOCKERHUB_USER:** 如果源仓库是dockerhub，即使公开仓库，也是需要鉴权信息，填写`dockehub`用户名  
 - **TARGET_NAMESPACE:** 目标`NAMESPACE`,该例子中应该设置为`imdingtalk`  
 - **TARGET_REGISTRY:** 目标仓库，该例子中应该设置为`registry.cn-hangzhou.aliyuncs.com`  
 - **TARGET_REGISTRY_USER:** 目标仓库的用户名  
 一些`secrets`
-- **DOCKERHUB_PASSWORD:** 如果源仓库是dockerhub，即使公开仓库，也是需要鉴权信息，填写`dockehub`密码
-- **TARGET_REGISTRY_PASSWORD:** 目标仓库的密码 
+- **TARGET_REGISTRY_PASSWORD:** 目标仓库的密码,暂不支持特殊字符
 
 该例子中，需要确保使用目标仓库的用户名和密码，使用命令 `docker login registry.cn-hangzhou.aliyuncs.com`能够成功登录  
 4. 按照直接使用的方式在自己的仓库提交issue  
