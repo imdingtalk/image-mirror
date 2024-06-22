@@ -1,15 +1,15 @@
 index.docker.io:
-  username: $TARGET_REGISTRY_USER
-  password: $TARGET_REGISTRY_PASSWORD
-registry-1.docker.io:
-  username: $TARGET_REGISTRY_USER
-  password: $TARGET_REGISTRY_PASSWORD
-registry.hub.docker.com:
-  username: $TARGET_REGISTRY_USER
-  password: $TARGET_REGISTRY_PASSWORD
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_PASSWORD
 docker.io:
-  username: $TARGET_REGISTRY_USER
-  password: $TARGET_REGISTRY_PASSWORD
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_PASSWORD
+registry-1.docker.io:
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_PASSWORD
+registry.hub.docker.com:
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_PASSWORD
 registry.cn-hangzhou.aliyuncs.com:
   username: $TARGET_REGISTRY_USER
   password: $TARGET_REGISTRY_PASSWORD
