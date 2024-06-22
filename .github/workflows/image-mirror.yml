@@ -65,7 +65,7 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: |
             Syncing image to TargetRegistry, please wait a moment  
-            [Check the progress](https://github.com/${{ github.actor }}/image-mirror/actions/runs/${{ github.run_id }})    
+            [Check the progress](https://github.com/${{ github.repository_owner }}/image-mirror/actions/runs/${{ github.run_id }})    
           reactions: rocket
 
       - name: prepare
@@ -151,7 +151,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-            [Check the progress](https://github.com/${{ github.actor }}/image-mirror/actions/runs/${{ github.run_id }})              
+            [Check the progress](https://github.com/${{ github.repository_owner }}/image-mirror/actions/runs/${{ github.run_id }})              
             ## 镜像信息如下
             - dockerhub-image.yml  
             ```shell
