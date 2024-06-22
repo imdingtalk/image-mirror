@@ -78,6 +78,8 @@ jobs:
         if: steps.check_body.outputs.is_image_format == 'true'
         id: syncImage
         env:
+          DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
           TARGET_REGISTRY_PASSWORD: ${{ secrets.TARGET_REGISTRY_PASSWORD }}
           TARGET_REGISTRY_USER: ${{ vars.TARGET_REGISTRY_USER }}
           # TARGET_REGISTRY: index.docker.io
