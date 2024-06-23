@@ -18,6 +18,9 @@
 
 ### fork 使用(推荐)
 
+- 广而告之: 阿里云目前提供个人版镜像仓库，限额`3`个`namespace`,`300`个镜像。对于个人足够用了，所以我个人推荐是`fork`使用，把镜像同步到自己的个人仓库,自己个人镜像也可以'push'到上面
+
+
 1. fork 本仓库，然后在仓库设置中打开`issue`功能  
 2. 设置自己的目标仓库信息  
 ![image](https://github.com/imdingtalk/image-mirror/assets/16778873/a83b8765-3bd1-4391-afb3-cd8d4bc4718d)
