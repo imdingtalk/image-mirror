@@ -1,7 +1,34 @@
+registry.cn-beijing.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-chengdu.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-guangzhou.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
 registry.cn-hangzhou.aliyuncs.com:
   username: $TARGET_REGISTRY_USER
   password: $TARGET_REGISTRY_PASSWORD
+registry.cn-heyuan.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-huhehaote.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-qingdao.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-shanghai.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
 registry.cn-shenzhen.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-wulanchabu.aliyuncs.com:
+  username: $TARGET_REGISTRY_USER
+  password: $TARGET_REGISTRY_PASSWORD
+registry.cn-zhangjiakou.aliyuncs.com:
   username: $TARGET_REGISTRY_USER
   password: $TARGET_REGISTRY_PASSWORD
 $TARGET_REGISTRY:
