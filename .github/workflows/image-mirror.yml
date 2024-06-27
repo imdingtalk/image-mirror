@@ -71,8 +71,8 @@ jobs:
       - name: prepare
         if: steps.check_body.outputs.is_image_format == 'true'
         run: |
-          wget -q  https://github.com/AliyunContainerService/image-syncer/releases/download/v1.5.0/image-syncer-v1.5.0-linux-amd64.tar.gz
-          tar zxf image-syncer-v1.5.0-linux-amd64.tar.gz 
+          wget -q  https://github.com/AliyunContainerService/image-syncer/releases/download/v1.5.4/image-syncer-v1.5.4-linux-amd64.tar.gz
+          tar zxf image-syncer-v1.5.4-linux-amd64.tar.gz 
           sudo  apt install dos2unix 
       - name: start sync
         if: steps.check_body.outputs.is_image_format == 'true'
