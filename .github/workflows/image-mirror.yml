@@ -20,7 +20,7 @@ jobs:
     # if: contains(github.event.issue.labels.*.name, 'image-mirror')
     concurrency:
       group: ${{ github.workflow }}-${{ github.actor }}
-      cancel-in-progress: true
+      cancel-in-progress: false
     # 镜像转换任务的步骤列表
     steps:
 
