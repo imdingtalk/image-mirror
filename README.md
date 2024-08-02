@@ -45,7 +45,7 @@
 
 ![image](https://github.com/imdingtalk/image-mirror/assets/16778873/18609b09-f41a-46e9-a240-d7eddd925b53)
 
-就会出发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
+就会触发GitHub action，同步镜像到 `registry.cn-hangzhou.aliyuncs.com`(默认同步到`imdingtalk`的`NAMESPACE`下)  
 
 GitHub action bot会在action完成后，提示同步成功的镜像
 
