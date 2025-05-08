@@ -1,31 +1,43 @@
-name: 镜像同步请求  
-description: 请求同步 Docker 镜像到目标仓库  
-title: "[image-mirror]"  
-labels: ["pending-validation"]  
-body:  
-  - type: markdown  
-    attributes:  
-      value: |  
-        ## 镜像同步请求  
-        请在下方提供需要同步的镜像列表，每行一个镜像。  
-          
-        ### 格式要求  
-        - 每个镜像必须包含标签，例如：`nginx:latest`  
-        - 支持的格式：  
-          - `name/image:tag`  
-          - `name/namespace/image:tag`  
-          - `name/namespace/path/image:tag`  
-          - `image:tag`  
-    
-  - type: textarea  
-    id: images  
-    attributes:  
-      label: 镜像列表  
-      description: 请输入需要同步的镜像列表，每行一个镜像  
-      placeholder: |  
-        nginx:latest  
-        redis:6.2  
+name: 镜像同步请求
+description: 请求同步 Docker 镜像到目标仓库
+title: "[image-mirror]"
+labels: ["pending-validation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐳 镜像同步请求
+
+        请在下方提供需要同步的镜像列表，每行一个镜像。
+
+        ### ✅ 格式要求（*必须包含标签*）  
+        支持以下格式之一：
+
+        - `image:tag`  
+        - `namespace/image:tag`  
+        - `registry/namespace/image:tag`  
+        - `registry/namespace/path/image:tag`  
+
+        ⚠️ **每个镜像必须包含 `:tag` 标签，否则无法同步！**
+
+        ❗如果输入无效格式，我们将关闭此请求，请务必仔细检查。
+
+  - type: textarea
+    id: images
+    attributes:
+      label: 📦 镜像列表
+      description: |
+        请输入需要同步的镜像列表，每行一个镜像。请确保符合格式要求！
+        
+        示例：  
+        ```
+        nginx:latest
+        redis:6.2
         gcr.io/kubernetes/kube-proxy:v1.18.3
-    validations:  
-      required: true  
-      pattern: '^([a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+)(\r?\n([a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+))*$'
+        ```
+      placeholder: |
+        nginx:latest
+        redis:6.2
+        gcr.io/kubernetes/kube-proxy:v1.18.3
+    validations:
+      required: true
