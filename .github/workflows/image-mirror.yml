@@ -50,6 +50,31 @@ jobs:
             2. 标题不重要,issue描述部分,每行一个镜像不要有其他内容,你可以直接更新你的issue
           reactions: hooray
           edit-mode: replace
+      - name: Update issue title with image summary
+        if: steps.check_body.outputs.is_image_format == 'true'
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const issue_number = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const body = context.payload.issue.body;
+
+            // 🧾 拆分 body，并跳过第一行
+            const lines = body.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+            const images = lines.slice(1); // 从第二行开始提取镜像名
+
+            const top3 = images.slice(0, 3).join(' | ');
+            const total = images.length;
+
+            const newTitle = `${top3}  (共 ${total} 个镜像)`;
+
+            await github.rest.issues.update({
+              owner,
+              repo,
+              issue_number,
+              title: newTitle
+            });
 
       - name: Add image-mirror label if body is image format
         if: steps.check_body.outputs.is_image_format == 'true'
