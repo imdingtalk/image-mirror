@@ -26,6 +26,6 @@ body:
         nginx:latest  
         redis:6.2  
         gcr.io/kubernetes/kube-proxy:v1.18.3
-validations:  
+    validations:  
       required: true  
       pattern: '^([a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+)(\r?\n([a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+/[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+|[a-zA-Z0-9\*._-]+:[a-zA-Z0-9\*._-]+))*$'
