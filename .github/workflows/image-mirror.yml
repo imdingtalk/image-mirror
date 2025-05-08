@@ -163,3 +163,20 @@ jobs:
             ${{ steps.get-comment-body.outputs.body }}
           reactions: hooray
           edit-mode: replace
+      - name: Add failure hint comment
+        if: failure() && steps.check_body.outputs.is_image_format == 'true'
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            ❌ 镜像同步失败，请检查以下几点：
+            - 源镜像是否拼写错误？
+            - tag 是否存在（如 `latest`、`1.21`）？
+            - 该镜像是否为公开可拉取的镜像？
+            - 若为私有镜像，请确认目标 registry 有访问权限
+
+            可参考 logs：
+            [查看工作详情](https://github.com/${{ github.repository_owner }}/image-mirror/actions/runs/${{ github.run_id }})
+
+          reactions: confused
+
