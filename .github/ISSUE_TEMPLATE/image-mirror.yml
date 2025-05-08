@@ -3,38 +3,22 @@ description: 请求同步 Docker 镜像到目标仓库
 title: "[image-mirror]"
 labels: ["pending-validation"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## 🐳 镜像同步请求
-
-        请在下方提供 **仅包含** 需要同步的镜像列表，每行一个镜像。
-
-        ### ✅ 格式要求  
-        - **必须包含标签**，例如：`nginx:latest`  
-        - **仅允许镜像格式**，不允许附加描述或注释  
-
-        支持以下格式之一：
-        - `image:tag`  
-        - `namespace/image:tag`  
-        - `registry/namespace/image:tag`  
-        - `registry/namespace/path/image:tag`  
-
-        ❗**注意：** 每个镜像必须包含 `:tag`，否则无法同步！
-
   - type: textarea
     id: images
     attributes:
-      label: 📦 镜像列表
+      label: 镜像列表
       description: |
-        请输入 **仅包含** 镜像的列表，不要包含任何额外的描述或格式。
-
-        示例：  
+        请输入镜像列表，每行一个镜像，格式要求如下：
+        - 每个镜像必须包含 `:tag` 标签
+        - 支持格式：`image:tag`、`namespace/image:tag`、`registry/namespace/image:tag`  
+        
+        示例：
         ```
         nginx:1.21
         redis:6.2
         gcr.io/kubernetes/kube-proxy:v1.18.3
         ```
+
       placeholder: |
         nginx:1.21
         redis:6.2
