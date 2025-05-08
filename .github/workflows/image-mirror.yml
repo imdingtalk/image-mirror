@@ -91,7 +91,8 @@ jobs:
           sed -i 's/^[ \t]*//g' images-init.yml
           sed -i 's/[ \t]*$//g' images-init.yml
           sed -i '/^[  ]*$/d'   images-init.yml
-          img=$(cat images-init.yml)
+          # img=$(cat images-init.yml)
+          img=$(tail -n +2 images-init.yml)
           for i in ${img[@]}
           do
             tagName=$(echo $i | awk -F "/" '{print $NF}');
