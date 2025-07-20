@@ -19,8 +19,8 @@ jobs:
     # 运行条件 => issues 的 label 包含 image-mirror
     # if: contains(github.event.issue.labels.*.name, 'image-mirror')
     concurrency:
-      group: ${{ github.workflow }}-${{ github.actor }}
-      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.actor }}-${{ github.event.issue.number }}
+      cancel-in-progress: false
     # 镜像转换任务的步骤列表
     steps:
 
